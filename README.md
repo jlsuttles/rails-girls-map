@@ -28,7 +28,7 @@ $ vi include/db.php # setup database variables
 
 1. Set buildpack to PHP.
 ```bash
-$ heroku config:set BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-php
+$ heroku config:set BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-mahara
 ```
 
 1. Set LD_LIBRARY_PATH
