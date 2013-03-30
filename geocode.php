@@ -13,9 +13,6 @@ define("KEY", "abcdefg");
 geocode("places");
 geocode("events");
 
-
-
-
 // geocode function
 function geocode($table) {
   global $hide_geocode_output;
@@ -37,8 +34,8 @@ function geocode($table) {
       $request_url = $base_url . "&address=" . urlencode($address);
       $xml = simplexml_load_file($request_url) or die("url not loading");
 
-      $status = $xml->Response->Status->code;
-      if (strcmp($status, "200") == 0) {
+      $status = $xml->GeocodeResponse->status
+      if (strcmp($status, "OK") == 0) {
         // Successful geocode
         $geocode_pending = false;
         $coordinates = $xml->Response->Placemark->Point->coordinates;
