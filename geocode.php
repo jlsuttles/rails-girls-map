@@ -25,7 +25,7 @@ function geocode($table) {
 
   // geocode and save them back to the db
   $delay = 0;
-  $base_url = "http://" . MAPS_HOST . "/maps/geo?output=xml" . "&key=" . KEY;
+  $base_url = "http://" . MAPS_HOST . "/maps/geo?output=xml";//. "&key=" . KEY;
 
   // Iterate through the rows, geocoding each address
   while ($row = @mysql_fetch_assoc($result)) {
