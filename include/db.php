@@ -7,7 +7,7 @@ $db_url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 $db_host = $db_url["host"];
 
 // database name
-$db_name = $db_url["path"];
+$db_name = substr($db_url["path"],1);
 
 // database user name
 $db_user = $db_url["user"];
