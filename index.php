@@ -10,11 +10,11 @@ include_once "header.php";
     - Alex Benzer (@abenzer)
     - Tara Tiger Brown (@tara)
     - Sean Bonner (@seanbonner)
-    
+
     Create a map for your startup community!
     https://github.com/abenzer/represent-map
     -->
-    <title>represent.la - map of the Los Angeles startup community</title>
+    <title>Rails Girls Map - map of Rails Girls community</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -27,13 +27,13 @@ include_once "header.php";
     <script src="./bootstrap/js/bootstrap-typeahead.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="./scripts/label.js"></script>
-    
+
     <script type="text/javascript">
       var map;
       var infowindow = null;
       var gmarkers = [];
       var markerTitles =[];
-      var highestZIndex = 0;  
+      var highestZIndex = 0;
       var agent = "default";
       var zoomControl = true;
 
@@ -48,22 +48,22 @@ include_once "header.php";
           agent = "ipad";
           zoomControl = false;
         }
-      }); 
-      
+      });
+
 
       // resize marker list onload/resize
       $(document).ready(function(){
-        resizeList() 
+        resizeList()
       });
       $(window).resize(function() {
         resizeList();
       });
-      
+
       // resize marker list to fit window
       function resizeList() {
         newHeight = $('html').height() - $('#topbar').height();
-        $('#list').css('height', newHeight + "px"); 
-        $('#menu').css('margin-top', $('#topbar').height()); 
+        $('#list').css('height', newHeight + "px");
+        $('#menu').css('margin-top', $('#topbar').height());
       }
 
 
@@ -166,14 +166,13 @@ include_once "header.php";
         markers = new Array();
         <?php
           $types = Array(
-              Array('startup', 'Startups'),
-              Array('accelerator','Accelerators'),
-              Array('incubator', 'Incubators'), 
-              Array('coworking', 'Coworking'), 
-              Array('investor', 'Investors'),
-              Array('service', 'Consulting'),
-              Array('hackerspace', 'Hackerspaces'),
-              Array('event', 'Events'),
+              Array('africa', 'Africa'),
+              Array('europe','Europe'),
+              Array('asia', 'Asia'),
+              Array('northamerica', 'North America'),
+              Array('southamerica', 'South America'),
+              Array('antartica', 'Antartica'),
+              Array('australia', 'Australia'),
               );
           $marker_id = 0;
           foreach($types as $type) {
@@ -185,13 +184,13 @@ include_once "header.php";
               $place[uri] = addslashes(htmlspecialchars($place[uri]));
               $place[address] = htmlspecialchars_decode(addslashes(htmlspecialchars($place[address])));
               echo "
-                markers.push(['".$place[title]."', '".$place[type]."', '".$place[lat]."', '".$place[lng]."', '".$place[description]."', '".$place[uri]."', '".$place[address]."']); 
+                markers.push(['".$place[title]."', '".$place[type]."', '".$place[lat]."', '".$place[lng]."', '".$place[description]."', '".$place[uri]."', '".$place[address]."']);
                 markerTitles[".$marker_id."] = '".$place[title]."';
-              "; 
+              ";
               $count[$place[type]]++;
               $marker_id++;
             }
-          } 
+          }
           if($show_events == true) {
             $place[type] = "event";
             $events = mysql_query("SELECT * FROM events WHERE start_date > ".time()." AND start_date < ".(time()+4838400)." ORDER BY id DESC");
@@ -203,9 +202,9 @@ include_once "header.php";
               $event[address] = htmlspecialchars_decode(addslashes(htmlspecialchars($event[address])));
               $event[start_date] = date("D, M j @ g:ia", $event[start_date]);
               echo "
-                markers.push(['".$event[title]."', 'event', '".$event[lat]."', '".$event[lng]."', '".$event[start_date]."', '".$event[uri]."', '".$event[address]."']); 
+                markers.push(['".$event[title]."', 'event', '".$event[lat]."', '".$event[lng]."', '".$event[start_date]."', '".$event[uri]."', '".$event[address]."']);
                 markerTitles[".$marker_id."] = '".$event[title]."';
-              "; 
+              ";
               $count[$place[type]]++;
               $marker_id++;
             }
@@ -248,23 +247,23 @@ include_once "header.php";
           // add marker hover events (if not viewing on mobile)
           if(agent == "default") {
             google.maps.event.addListener(marker, "mouseover", function() {
-              this.old_ZIndex = this.getZIndex(); 
-              this.setZIndex(9999); 
+              this.old_ZIndex = this.getZIndex();
+              this.setZIndex(9999);
               $("#marker"+i).css("display", "inline");
               $("#marker"+i).css("z-index", "99999");
             });
-            google.maps.event.addListener(marker, "mouseout", function() { 
+            google.maps.event.addListener(marker, "mouseout", function() {
               if (this.old_ZIndex && zoomLevel <= 15) {
-                this.setZIndex(this.old_ZIndex); 
+                this.setZIndex(this.old_ZIndex);
                 $("#marker"+i).css("display", "none");
               }
-            }); 
+            });
           }
 
           // format marker URI for display and linking
           var markerURI = val[5];
           if(markerURI.substr(0,7) != "http://") {
-            markerURI = "http://" + markerURI; 
+            markerURI = "http://" + markerURI;
           }
           var markerURI_short = markerURI.replace("http://", "");
           var markerURI_short = markerURI_short.replace("www.", "");
@@ -296,7 +295,7 @@ include_once "header.php";
 
         // zoom to marker if selected in search typeahead list
         $('#search').typeahead({
-          source: markerTitles, 
+          source: markerTitles,
           onselect: function(obj) {
             marker_id = jQuery.inArray(obj, markerTitles);
             if(marker_id > -1) {
@@ -307,7 +306,7 @@ include_once "header.php";
             $("#search").val("");
           }
         });
-      } 
+      }
 
 
       // zoom to specific marker
@@ -322,9 +321,9 @@ include_once "header.php";
       // toggle (hide/show) markers of a given type (on the map)
       function toggle(type) {
         if($('#filter_'+type).is('.inactive')) {
-          show(type); 
+          show(type);
         } else {
-          hide(type); 
+          hide(type);
         }
       }
 
@@ -347,7 +346,7 @@ include_once "header.php";
         }
         $("#filter_"+type).removeClass("inactive");
       }
-      
+
       // toggle (hide/show) marker list of a given type
       function toggleList(type) {
         $("#list .list-"+type).toggle();
@@ -364,14 +363,14 @@ include_once "header.php";
 
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-    
+
     <? echo $head_html; ?>
   </head>
   <body>
-    
+
     <!-- display error overlay if something went wrong -->
     <?php echo $error; ?>
-    
+
     <!-- facebook like button code -->
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -381,10 +380,10 @@ include_once "header.php";
       js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=421651897866629";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
-    
+
     <!-- google map -->
     <div id="map_canvas"></div>
-    
+
     <!-- topbar -->
     <div class="topbar" id="topbar">
       <div class="wrapper">
@@ -415,22 +414,22 @@ include_once "header.php";
         </div>
       </div>
     </div>
-    
+
     <!-- right-side gutter -->
     <div class="menu" id="menu">
       <ul class="list" id="list">
         <?php
           $types = Array(
-              Array('startup', 'Startups'),
-              Array('accelerator','Accelerators'),
-              Array('incubator', 'Incubators'), 
-              Array('coworking', 'Coworking'), 
-              Array('investor', 'Investors'),
-              Array('service', 'Consulting'),
-              Array('hackerspace', 'Hackerspaces')
+              Array('africa', 'Africa'),
+              Array('europe','Europe'),
+              Array('asia', 'Asia'),
+              Array('northamerica', 'North America'),
+              Array('southamerica', 'South America'),
+              Array('antartica', 'Antartica'),
+              Array('australia', 'Australia'),
               );
           if($show_events == true) {
-            $types[] = Array('event', 'Events'); 
+            $types[] = Array('event', 'Events');
           }
           $marker_id = 0;
           foreach($types as $type) {
@@ -472,7 +471,7 @@ include_once "header.php";
         </li>
       </ul>
     </div>
-    
+
     <!-- more info modal -->
     <div class="modal hide" id="modal_info">
       <div class="modal-header">
@@ -483,7 +482,7 @@ include_once "header.php";
         <p>
           We built this map to connect and promote the tech startup community
           in our beloved Los Angeles. We've seeded the map but we need
-          your help to keep it fresh. If you don't see your company, please 
+          your help to keep it fresh. If you don't see your company, please
           <?php if($sg_enabled) { ?>
             <a href="#modal_add_choose" data-toggle="modal" data-dismiss="modal">submit it here</a>.
           <?php } else { ?>
@@ -514,7 +513,7 @@ include_once "header.php";
         </ul>
         <p>
           This map was built with <a href="https://github.com/abenzer/represent-map">RepresentMap</a> - an open source project we started
-          to help startup communities around the world create their own maps. 
+          to help startup communities around the world create their own maps.
           Check out some <a target="_blank" href="http://www.representmap.com">startup maps</a> built by other communities!
         </p>
       </div>
@@ -522,8 +521,8 @@ include_once "header.php";
         <a href="#" class="btn" data-dismiss="modal" style="float: right;">Close</a>
       </div>
     </div>
-    
-    
+
+
     <!-- add something modal -->
     <div class="modal hide" id="modal_add">
       <form action="add.php" id="modal_addform" class="form-horizontal">
@@ -556,13 +555,13 @@ include_once "header.php";
               <label class="control-label" for="input01">Company Type</label>
               <div class="controls">
                 <select name="type" id="add_type" class="input-xlarge">
-                  <option value="startup">Startup</option>
-                  <option value="accelerator">Accelerator</option>
-                  <option value="incubator">Incubator</option>
-                  <option value="coworking">Coworking</option>
-                  <option value="investor">VC/Angel</option>
-                  <option value="service">Consulting Firm</option>
-                  <option value="hackerspace">Hackerspace</option>
+                  <option value="africa">Africa</option>
+                  <option value="europe">Europe</option>
+                  <option value="asia">Asia</option>
+                  <option value="northamerica">North America</option>
+                  <option value="southamerica">South America</option>
+                  <option value="antartica">Antartica</option>
+                  <option value="australia">Australia</option>
                 </select>
               </div>
             </div>
@@ -605,7 +604,7 @@ include_once "header.php";
     <script>
       // add modal form submit
       $("#modal_addform").submit(function(event) {
-        event.preventDefault(); 
+        event.preventDefault();
         // get values
         var $form = $( this ),
             owner_name = $form.find( '#add_owner_name' ).val(),
@@ -621,25 +620,25 @@ include_once "header.php";
         $.post( url, { owner_name: owner_name, owner_email: owner_email, title: title, type: type, address: address, uri: uri, description: description },
           function( data ) {
             var content = $( data ).find( '#content' );
-            
+
             // if submission was successful, show info alert
             if(data == "success") {
-              $("#modal_addform #result").html("We've received your submission and will review it shortly. Thanks!"); 
+              $("#modal_addform #result").html("We've received your submission and will review it shortly. Thanks!");
               $("#modal_addform #result").addClass("alert alert-info");
               $("#modal_addform p").css("display", "none");
               $("#modal_addform fieldset").css("display", "none");
               $("#modal_addform .btn-primary").css("display", "none");
-              
+
             // if submission failed, show error
             } else {
-              $("#modal_addform #result").html(data); 
+              $("#modal_addform #result").html(data);
               $("#modal_addform #result").addClass("alert alert-danger");
             }
           }
         );
       });
     </script>
-    
+
     <!-- startup genome modal -->
     <div class="modal hide" id="modal_add_choose">
       <form action="add.php" id="modal_addform_choose" class="form-horizontal">
@@ -675,6 +674,6 @@ include_once "header.php";
         </div>
       </form>
     </div>
-    
+
   </body>
 </html>
