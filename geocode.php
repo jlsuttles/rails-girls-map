@@ -36,7 +36,7 @@ function geocode($table) {
       $xml = simplexml_load_file($request_url) or die("url not loading");
       echo $xml;
 
-      $status = $xml->GeocodeResponse->status;
+      $status = $xml->status;
       if (strcmp($status, "OK") == 0) {
         // Successful geocode
         $geocode_pending = false;
