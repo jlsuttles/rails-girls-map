@@ -62,6 +62,7 @@ function geocode($table) {
         $geocode_pending = false;
         echo "Address " . $address . " failed to geocoded. ";
         echo "Received status " . $status . " \\n";
+        echo $request_url;
         echo $xml;
       }
       usleep($delay);
