@@ -32,19 +32,14 @@ function geocode($table) {
       $address = $row["address"];
       $id = $row["id"];
       $request_url = $base_url . "&address=" . urlencode($address);
-      echo $request_url;
       $xml = simplexml_load_file($request_url) or die("url not loading");
-      echo $xml;
 
       $status = $xml->status;
       if (strcmp($status, "OK") == 0) {
         // Successful geocode
         $geocode_pending = false;
-        $coordinates = $xml->Response->Placemark->Point->coordinates;
-        $coordinatesSplit = mb_split(",", $coordinates);
-        // Format: Longitude, Latitude, Altitude
-        $lat = $coordinatesSplit[1];
-        $lng = $coordinatesSplit[0];
+        $lat = $xml->result->geometry->location->lat;
+        $lng = $xml->result->geometry->location->lng;
 
         $query = sprintf("UPDATE $table " .
               " SET lat = '%s', lng = '%s' " .
@@ -62,6 +57,7 @@ function geocode($table) {
       } else {
         // failure to geocode
         $geocode_pending = false;
+        echo $request_url;
         echo "Address " . $address . " failed to geocoded. ";
         echo "Received status " . $status . " \\n";
       }
