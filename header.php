@@ -1,8 +1,8 @@
 <?php
-$path = "./include";
+$path = "/app/www/include";
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
-include "./include/db.php";
+include "/app/www/include/db.php";
 
 // connect to db
 mysql_connect($db_host, $db_user, $db_pass) or die(mysql_error());
