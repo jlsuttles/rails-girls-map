@@ -63,8 +63,8 @@ function geocode($table) {
       } else {
         // failure to geocode
         $geocode_pending = false;
-        //echo "Address " . $address . " failed to geocoded. ";
-        //echo "Received status " . $status . " \n";
+        echo "Address " . $address . " failed to geocoded. ";
+        echo "Received status " . $status . " \\n";
       }
       usleep($delay);
     }
