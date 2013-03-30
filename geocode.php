@@ -22,7 +22,7 @@ function geocode($table) {
 
   // geocode and save them back to the db
   $delay = 0;
-  $base_url = "http://" . MAPS_HOST . "/maps/api/geocode/xml?";//. "&key=" . KEY;
+  $base_url = "http://" . MAPS_HOST . "/maps/api/geocode/xml?senor=false";
 
   // Iterate through the rows, geocoding each address
   while ($row = @mysql_fetch_assoc($result)) {
@@ -54,7 +54,7 @@ function geocode($table) {
         if (!$update_result) {
           die("Invalid query: " . mysql_error());
         }
-      } else if (strcmp($status, "620") == 0) {
+      } else if (strcmp($status, "OVER_QUERY_LIMIT") == 0) {
         // sent geocodes too fast
         $delay += 100000;
       } else {
