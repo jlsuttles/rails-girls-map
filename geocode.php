@@ -32,7 +32,9 @@ function geocode($table) {
       $address = $row["address"];
       $id = $row["id"];
       $request_url = $base_url . "&address=" . urlencode($address);
+      echo $request_url;
       $xml = simplexml_load_file($request_url) or die("url not loading");
+      echo $xml;
 
       $status = $xml->GeocodeResponse->status;
       if (strcmp($status, "OK") == 0) {
@@ -62,8 +64,6 @@ function geocode($table) {
         $geocode_pending = false;
         echo "Address " . $address . " failed to geocoded. ";
         echo "Received status " . $status . " \\n";
-        echo $request_url;
-        echo $xml;
       }
       usleep($delay);
     }
