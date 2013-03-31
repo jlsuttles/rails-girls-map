@@ -389,7 +389,7 @@ include_once "header.php";
       <div class="wrapper">
         <div class="right">
           <div class="share">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.represent.la" data-text="Check out Rails Girls on the map!" data-via="railsgirlsmap" data-count="none">Tweet</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.represent.la" data-text="Check out Rails Girls on the map! #railsgirlsmap" data-via="railsgirls" data-count="none">Tweet</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
             <div class="fb-like" data-href="http://www.represent.la" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial"></div>
           </div>
@@ -409,7 +409,7 @@ include_once "header.php";
             <? } ?>
           </div>
           <div class="search">
-            <input type="text" name="search" id="search" placeholder="Search for companies..." data-provide="typeahead" autocomplete="off" />
+            <input type="text" name="search" id="search" placeholder="Search..." data-provide="typeahead" autocomplete="off" />
           </div>
         </div>
       </div>
@@ -462,8 +462,8 @@ include_once "header.php";
           }
         ?>
         <li class="blurb">
-          This map was made to connect and promote the Los Angeles tech startup community.
-          Let's put LA on the map!
+          We built this map to show the global reach of Rails Girls.
+          Let's put Rails Girls on the map!
         </li>
         <li class="attribution">
           <!-- per our license, you may not remove this line -->
@@ -476,41 +476,23 @@ include_once "header.php";
     <div class="modal hide" id="modal_info">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>About this Map</h3>
+        <h3>About Rails Girls Map</h3>
       </div>
       <div class="modal-body">
         <p>
-          We built this map to connect and promote the tech startup community
-          in our beloved Los Angeles. We've seeded the map but we need
-          your help to keep it fresh. If you don't see your company, please
+          We built this map to show the global reach of Rails Girls.We've
+          seeded the map but we need your help to keep it fresh. If you don't
+          see your Rails Girls chapter, please
           <?php if($sg_enabled) { ?>
             <a href="#modal_add_choose" data-toggle="modal" data-dismiss="modal">submit it here</a>.
           <?php } else { ?>
             <a href="#modal_add" data-toggle="modal" data-dismiss="modal">submit it here</a>.
           <?php } ?>
-          Let's put LA on the map together!
+          Let's put Rails Girls on the map together!
         </p>
         <p>
-          Questions? Feedback? Connect with us: <a href="http://www.twitter.com/representla" target="_blank">@representla</a>
+          Questions? Feedback? Email Jessica: <a href="mailto:jlsuttles+railsgirlsmap@gmail.com">jlsuttles@gmail.com</a>
         </p>
-        <p>
-          If you want to support the LA community by linking to this map from your website,
-          here are some badges you might like to use. You can also grab the <a href="./images/badges/LA-icon.ai">LA icon AI file</a>.
-        </p>
-        <ul class="badges">
-          <li>
-            <img src="./images/badges/badge1.png" alt="">
-          </li>
-          <li>
-            <img src="./images/badges/badge1_small.png" alt="">
-          </li>
-          <li>
-            <img src="./images/badges/badge2.png" alt="">
-          </li>
-          <li>
-            <img src="./images/badges/badge2_small.png" alt="">
-          </li>
-        </ul>
         <p>
           This map was built with <a href="https://github.com/abenzer/represent-map">RepresentMap</a> - an open source project we started
           to help startup communities around the world create their own maps.
@@ -546,13 +528,13 @@ include_once "header.php";
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label" for="add_title">Company Name</label>
+              <label class="control-label" for="add_title">Chapter Name</label>
               <div class="controls">
-                <input type="text" class="input-xlarge" name="title" id="add_title" maxlength="100" autocomplete="off">
+                <input type="text" class="input-xlarge" name="title" id="add_title" maxlength="100" autocomplete="off" placeholder="Rails Girls Helsinki">
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label" for="input01">Company Type</label>
+              <label class="control-label" for="input01">Continent</label>
               <div class="controls">
                 <select name="type" id="add_type" class="input-xlarge">
                   <option value="africa">Africa</option>
@@ -566,11 +548,10 @@ include_once "header.php";
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label" for="add_address">Address</label>
+              <label class="control-label" for="add_address">City, Country</label>
               <div class="controls">
-                <input type="text" class="input-xlarge" name="address" id="add_address">
+                <input type="text" class="input-xlarge" name="address" id="add_address" placeholder="Helsinki, Finland">
                 <p class="help-block">
-                  Should be your <b>full street address (including city and zip)</b>.
                   If it works on Google Maps, it will work here.
                 </p>
               </div>
@@ -578,25 +559,18 @@ include_once "header.php";
             <div class="control-group">
               <label class="control-label" for="add_uri">Website URL</label>
               <div class="controls">
-                <input type="text" class="input-xlarge" id="add_uri" name="uri" placeholder="http://">
+                <input type="text" class="input-xlarge" id="add_uri" name="uri" placeholder="http://railsgirls.com/helsinki">
                 <p class="help-block">
-                  Should be your full URL with no trailing slash, e.g. "http://www.yoursite.com"
+                  Should be your full URL with no trailing slash, e.g. "http://railsgirls.com/helsinki"
                 </p>
               </div>
             </div>
-            <div class="control-group">
-              <label class="control-label" for="add_description">Description</label>
-              <div class="controls">
-                <input type="text" class="input-xlarge" id="add_description" name="description" maxlength="150">
-                <p class="help-block">
-                  Brief, concise description. What's your product? What problem do you solve? Max 150 chars.
-                </p>
-              </div>
-            </div>
+            <!-- Description isn't needed -->
+            <input type="hidden" id="add_description" name="description" value=" ">
           </fieldset>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Submit for Review</button>
+          <button type="submit" class="btn btn-danger">Submit for Review</button>
           <a href="#" class="btn" data-dismiss="modal" style="float: right;">Close</a>
         </div>
       </form>
