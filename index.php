@@ -601,7 +601,7 @@ include_once "header.php";
               $("#modal_addform #result").addClass("alert alert-info");
               $("#modal_addform p").css("display", "none");
               $("#modal_addform fieldset").css("display", "none");
-              $("#modal_addform .btn-primary").css("display", "none");
+              $("#modal_addform .btn-danger").css("display", "none");
 
             // if submission failed, show error
             } else {
