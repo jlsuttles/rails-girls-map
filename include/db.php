@@ -68,7 +68,7 @@ $sg_enabled = false;
 // category will appear in the marker list, and you can
 // run events_get.php in your browser (or a chron) to populate
 // it with data from eventbrite.
-$show_events = true;
+$show_events = false;
 
     // put your eventbrite api key here
     $eb_app_key = "";
