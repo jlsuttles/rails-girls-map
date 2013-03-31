@@ -463,8 +463,7 @@ include_once "header.php";
         ?>
         <li class="blurb">
           We built this map to show the global reach of Rails Girls.
-        <li>
-        <li class="blurb">
+          <br/><br/>
           Let's put Rails Girls on the map!
         </li>
         <li class="attribution">
