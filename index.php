@@ -401,11 +401,11 @@ include_once "header.php";
             </a>
           </div>
           <div class="buttons">
-            <a href="#modal_info" class="btn btn-large" data-toggle="modal"><i class="icon-info-sign"></i>About this Map</a>
+            <a href="#modal_info" class="btn btn-large" data-toggle="modal"><i class="icon-info-sign"></i>About</a>
             <?php if($sg_enabled) { ?>
-              <a href="#modal_add_choose" class="btn btn-large" data-toggle="modal"><i class="icon-plus-sign"></i>Add Something</a>
+              <a href="#modal_add_choose" class="btn btn-large" data-toggle="modal"><i class="icon-plus-sign"></i>Add</a>
             <? } else { ?>
-              <a href="#modal_add" class="btn btn-large" data-toggle="modal"><i class="icon-plus-sign"></i>Add Something</a>
+              <a href="#modal_add" class="btn btn-large" data-toggle="modal"><i class="icon-plus-sign"></i>Add</a>
             <? } ?>
           </div>
           <div class="search">
@@ -463,6 +463,8 @@ include_once "header.php";
         ?>
         <li class="blurb">
           We built this map to show the global reach of Rails Girls.
+        <li>
+        <li class="blurb">
           Let's put Rails Girls on the map!
         </li>
         <li class="attribution">
@@ -480,14 +482,18 @@ include_once "header.php";
       </div>
       <div class="modal-body">
         <p>
-          We built this map to show the global reach of Rails Girls.We've
-          seeded the map but we need your help to keep it fresh. If you don't
-          see your Rails Girls chapter, please
+          We built this map to show the global reach of Rails Girls.
+        </p>
+        <p>
+          We've seeded the map but we need your help to keep it fresh. If you
+          don't see your Rails Girls chapter, please
           <?php if($sg_enabled) { ?>
             <a href="#modal_add_choose" data-toggle="modal" data-dismiss="modal">submit it here</a>.
           <?php } else { ?>
             <a href="#modal_add" data-toggle="modal" data-dismiss="modal">submit it here</a>.
           <?php } ?>
+        </p>
+        <p>
           Let's put Rails Girls on the map together!
         </p>
         <p>
@@ -510,7 +516,7 @@ include_once "header.php";
       <form action="add.php" id="modal_addform" class="form-horizontal">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">×</button>
-          <h3>Add something!</h3>
+          <h3>Add to the Rails Girls Map!</h3>
         </div>
         <div class="modal-body">
           <div id="result"></div>
