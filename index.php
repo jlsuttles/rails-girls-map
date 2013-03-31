@@ -130,9 +130,9 @@ include_once "header.php";
 
         // set map options
         var myOptions = {
-          zoom: 2,
+          zoom: 3,
           //minZoom: 10,
-          center: new google.maps.LatLng(50,0),
+          center: new google.maps.LatLng(34.5531284,18.0480105),
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           streetViewControl: false,
           mapTypeControl: false,
@@ -420,13 +420,13 @@ include_once "header.php";
       <ul class="list" id="list">
         <?php
           $types = Array(
-              Array('africa', 'Africa'),
               Array('europe','Europe'),
-              Array('asia', 'Asia'),
               Array('northamerica', 'North America'),
               Array('southamerica', 'South America'),
-              Array('antartica', 'Antartica'),
+              Array('asia', 'Asia'),
               Array('australia', 'Australia'),
+              Array('antartica', 'Antartica'),
+              Array('africa', 'Africa'),
               );
           if($show_events == true) {
             $types[] = Array('event', 'Events');
@@ -542,13 +542,13 @@ include_once "header.php";
               <label class="control-label" for="input01">Continent</label>
               <div class="controls">
                 <select name="type" id="add_type" class="input-xlarge">
-                  <option value="africa">Africa</option>
                   <option value="europe">Europe</option>
-                  <option value="asia">Asia</option>
                   <option value="northamerica">North America</option>
                   <option value="southamerica">South America</option>
-                  <option value="antartica">Antartica</option>
+                  <option value="asia">Asia</option>
                   <option value="australia">Australia</option>
+                  <option value="africa">Africa</option>
+                  <option value="antartica">Antartica</option>
                 </select>
               </div>
             </div>
