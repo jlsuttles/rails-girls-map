@@ -30,3 +30,10 @@ $ vi include/db.php # setup database variables
 ```bash
 $ heroku config:set LD_LIBRARY_PATH="/app/php/ext"
 ```
+
+1. Deploy
+```bash
+$ git push heroku
+```
+
+1. Create database tables.
