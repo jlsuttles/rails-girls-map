@@ -3,11 +3,11 @@ include "header.php";
 
 
 if(isset($_GET['place_id'])) {
-  $place_id = htmlspecialchars($_GET['place_id']); 
+  $place_id = htmlspecialchars($_GET['place_id']);
 } else if(isset($_POST['place_id'])) {
   $place_id = htmlspecialchars($_POST['place_id']);
 } else {
-  exit; 
+  exit;
 }
 
 
@@ -27,13 +27,13 @@ if($task == "doedit") {
   $owner_name = $_POST['owner_name'];
   $owner_email = $_POST['owner_email'];
   $type = $_POST['type'];
-  
+
   mysql_query("UPDATE places SET title='$title', type='$type', address='$address', uri='$uri', lat='', lng='', description='$description', owner_name='$owner_name', owner_email='$owner_email' WHERE id='$place_id' LIMIT 1") or die(mysql_error());
-  
+
   // geocode
   $hide_geocode_output = true;
   include "../geocode.php";
-  
+
   header("Location: index.php?view=$view&search=$search&p=$p");
   exit;
 }
@@ -59,13 +59,13 @@ if($task == "doedit") {
       <label class="control-label" for="">Type</label>
       <div class="controls">
         <select class="input input-xlarge" name="type">
-          <option<? if($place[type] == "startup") {?> selected="selected"<? } ?>>startup</option>
-          <option<? if($place[type] == "accelerator") {?> selected="selected"<? } ?>>accelerator</option>
-          <option<? if($place[type] == "incubator") {?> selected="selected"<? } ?>>incubator</option>
-          <option<? if($place[type] == "coworking") {?> selected="selected"<? } ?>>coworking</option>
-          <option<? if($place[type] == "investor") {?> selected="selected"<? } ?>>investor</option>
-          <option<? if($place[type] == "service") {?> selected="selected"<? } ?>>service</option>
-          <option<? if($place[type] == "hackerspace") {?> selected="selected"<? } ?>>hackerspace</option>
+          <option<? if($place[type] == "africa") {?> selected="selected"<? } ?>>Africa</option>
+          <option<? if($place[type] == "europe") {?> selected="selected"<? } ?>>Europe</option>
+          <option<? if($place[type] == "asia") {?> selected="selected"<? } ?>>Asia</option>
+          <option<? if($place[type] == "northamerica") {?> selected="selected"<? } ?>>North America</option>
+          <option<? if($place[type] == "southamerica") {?> selected="selected"<? } ?>>South America</option>
+          <option<? if($place[type] == "antartica") {?> selected="selected"<? } ?>>Antartica</option>
+          <option<? if($place[type] == "australia") {?> selected="selected"<? } ?>>Australia</option>
         </select>
       </div>
     </div>
