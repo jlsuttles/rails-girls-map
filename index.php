@@ -401,11 +401,11 @@ include_once "header.php";
             </a>
           </div>
           <div class="buttons">
-            <a href="#modal_info" class="btn btn-large" data-toggle="modal"><i class="icon-info-sign icon-white"></i>About this Map</a>
+            <a href="#modal_info" class="btn btn-large" data-toggle="modal"><i class="icon-info-sign"></i>About this Map</a>
             <?php if($sg_enabled) { ?>
-              <a href="#modal_add_choose" class="btn btn-large" data-toggle="modal"><i class="icon-plus-sign icon-white"></i>Add Something</a>
+              <a href="#modal_add_choose" class="btn btn-large" data-toggle="modal"><i class="icon-plus-sign"></i>Add Something</a>
             <? } else { ?>
-              <a href="#modal_add" class="btn btn-large" data-toggle="modal"><i class="icon-plus-sign icon-white"></i>Add Something</a>
+              <a href="#modal_add" class="btn btn-large" data-toggle="modal"><i class="icon-plus-sign"></i>Add Something</a>
             <? } ?>
           </div>
           <div class="search">
