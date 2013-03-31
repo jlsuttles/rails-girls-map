@@ -132,7 +132,7 @@ include_once "header.php";
         var myOptions = {
           zoom: 2,
           //minZoom: 10,
-          center: new google.maps.LatLng(61.92411,25.748151),
+          center: new google.maps.LatLng(35.7465120,-39.4628910),
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           streetViewControl: false,
           mapTypeControl: false,
