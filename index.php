@@ -130,7 +130,7 @@ include_once "header.php";
 
         // set map options
         var myOptions = {
-          zoom: 1,
+          zoom: 2,
           //minZoom: 10,
           center: new google.maps.LatLng(61.92411,25.748151),
           mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -253,7 +253,7 @@ include_once "header.php";
               $("#marker"+i).css("z-index", "99999");
             });
             google.maps.event.addListener(marker, "mouseout", function() {
-              if (this.old_ZIndex && zoomLevel <= 15) {
+              if (this.old_ZIndex && zoomLevel <= 6) {
                 this.setZIndex(this.old_ZIndex);
                 $("#marker"+i).css("display", "none");
               }
@@ -300,7 +300,7 @@ include_once "header.php";
             marker_id = jQuery.inArray(obj, markerTitles);
             if(marker_id > -1) {
               map.panTo(gmarkers[marker_id].getPosition());
-              map.setZoom(15);
+              map.setZoom(6);
               google.maps.event.trigger(gmarkers[marker_id], 'click');
             }
             $("#search").val("");
@@ -313,7 +313,7 @@ include_once "header.php";
       function goToMarker(marker_id) {
         if(marker_id) {
           map.panTo(gmarkers[marker_id].getPosition());
-          map.setZoom(15);
+          map.setZoom(6);
           google.maps.event.trigger(gmarkers[marker_id], 'click');
         }
       }
