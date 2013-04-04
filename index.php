@@ -420,13 +420,13 @@ include_once "header.php";
       <ul class="list" id="list">
         <?php
           $types = Array(
+              Array('africa', 'Africa'),
               Array('europe','Europe'),
+              Array('asia', 'Asia'),
               Array('northamerica', 'North America'),
               Array('southamerica', 'South America'),
-              Array('asia', 'Asia'),
-              Array('australia', 'Australia'),
               Array('antartica', 'Antartica'),
-              Array('africa', 'Africa'),
+              Array('australia', 'Australia'),
               );
           if($show_events == true) {
             $types[] = Array('event', 'Events');
@@ -542,13 +542,13 @@ include_once "header.php";
               <label class="control-label" for="input01">Continent</label>
               <div class="controls">
                 <select name="type" id="add_type" class="input-xlarge">
+                  <option value="africa">Africa</option>
                   <option value="europe">Europe</option>
+                  <option value="asia">Asia</option>
                   <option value="northamerica">North America</option>
                   <option value="southamerica">South America</option>
-                  <option value="asia">Asia</option>
-                  <option value="australia">Australia</option>
-                  <option value="africa">Africa</option>
                   <option value="antartica">Antartica</option>
+                  <option value="australia">Australia</option>
                 </select>
               </div>
             </div>
